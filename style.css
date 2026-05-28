@@ -69,17 +69,35 @@ body {
 
 /* Tab Content */
 .tab-content-wrapper {
-    padding: 2rem;
+    padding: 10.5rem;
+    position: relative; /* enables absolute-positioned panels */
+    margin: 20px 10px 20px 20px;
 }
 
 .tab-content {
-    display: none; /* Hidden by default */
-    animation: fadeIn 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* Keep outer container height stable (no layout reflow when switching tabs) */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    overflow: auto; /* allow scrolling inside the panel if content is long */
+
+    transform: translateY(4px);
 }
 
 .tab-content.active {
-    display: block; /* Visible when active */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
+
 
 .tab-content h3 {
     margin-top: 0;
